@@ -11,7 +11,9 @@ set rtp+=/usr/local/opt/fzf
 set rtp+=/Users/awoodard/software/anaconda3/envs/parsl_py36/bin/
 call plug#begin('~/.vim/plugged')
 " Plug 'ap/vim-buftabline'
+# 
 Plug 'vim-airline/vim-airline'
+#
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'ervandew/supertab'
@@ -27,17 +29,21 @@ Plug 'JulesWang/css.vim'
 Plug 'avakhov/vim-yaml'
 Plug 'mbbill/undotree'
 Plug 'lervag/vimtex'
+# will have to install fzf
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'mhartington/oceanic-next'
+# (requires vim compiled w/ Python support or vim8)
 Plug 'w0rp/ale'
 Plug 'heavenshell/vim-pydocstring'
 Plug 'google/yapf', { 'rtp': 'plugins/vim', 'for': 'python' }
+# Sorts imports into pep8
 Plug 'fisadev/vim-isort'
 if has('python')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
 endif
+# Below might work w/ Vim8.
 " if has('nvim')
 " 	Plug 'prabirshrestha/asyncomplete.vim'
 " 	Plug 'prabirshrestha/asyncomplete-lsp.vim'
@@ -101,6 +107,7 @@ set incsearch
 set ignorecase
 set smartcase
 
+# needs install
 if executable("rg")
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
   set grepprg=rg\ --vimgrep\ --no-heading
@@ -175,6 +182,7 @@ augroup END
 "   autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 " endif
 
+# or vi8
 if has('nvim')
   let g:ale_fixers = {'python': ['autopep8', 'yapf', 'isort', 'trim_whitespace', 'pep257', 'remove_trailing_lines']}
   let g:ale_linters = {'python': ['pydocstyle', 'flake8', 'mypy', 'pylint', 'pep257'], 'tex': []}
